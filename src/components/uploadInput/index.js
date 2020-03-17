@@ -43,7 +43,7 @@ const UploadButton = ({
   }
   return (
     <>
-      <form onSubmit={handleUpload}>
+      <form>
         <Label>Choose a file</Label>
         <Input type="file" name="file" onChange={handleFile}/>
         <button 
