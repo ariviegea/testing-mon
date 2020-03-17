@@ -1,15 +1,18 @@
-import React from 'react';
-import './scss/App.scss';
-
-import Button from './components/Button/Button'
+import React, { useState } from 'react';
+import Payment from './components/Payment/index'
+import UploadFile from './components/uploadInput/index'
 
 function App() {
   return (
     <>
-      <h1>Welcome to the library</h1>
-      <Button className='warning' text={'Hello'} />
+    <div className="App">
+      <UploadFile/>
+    </div>
     </>
   );
 }
 
 export default App;
+
+// https://cdnjs.com/libraries/font-awesome
+// <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
