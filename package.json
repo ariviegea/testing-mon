@@ -1,21 +1,16 @@
 {
-  "name": "mondido",
+  "name": "react-fancy-project",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@atlaskit/button": "^13.3.7",
-    "@atlaskit/spinner": "^12.1.4",
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
-    "@testing-library/user-event": "^7.2.1",
-    "axios": "^0.19.2",
-    "mon-dieu-elements": "0.0.5",
-    "node-sass": "^4.13.1",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "mon-dieu-elements": "^0.0.13",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0",
-    "styled-components": "^5.0.1",
-    "webpack": "^4.41.5"
+    "styled-components": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
