@@ -2,6 +2,7 @@ import React, {useState, useEffect, useReducer} from "react"
 import { Input, Label, Form } from "./style"
 import axios from 'axios'
 import { UploadFileMachine } from "./uploadFileMachine"
+import { Button } from "mon-dieu-elements"
 
 const UploadButton = ({
 }) => {
@@ -46,10 +47,9 @@ const UploadButton = ({
       <form>
         <Label>Choose a file</Label>
         <Input type="file" name="file" onChange={handleFile}/>
-        <button 
-        type="submit"
+        <Button
         onClick={handleUpload}
-        >Submit</button>
+        />
       </form>
     </>
   )
