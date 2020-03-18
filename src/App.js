@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Payment from './components/Payment/index'
 import UploadFile from './components/uploadInput/index'
 
 function App() {
