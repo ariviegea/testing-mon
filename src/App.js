@@ -41,6 +41,9 @@ const App = () => {
               >
                 Toggle mode
               </Button>
+              <div id='very-specific'>
+                <Button>This should use extra css</Button>
+              </div>
             </>
           )}
         </AppHeader>
