@@ -19,63 +19,65 @@ const UploadButton = ({
   // const [state, dispatch] = useReducer(UploadFileReducer, UploadFileMachine.start)
   const handleFile = (e) => {
     let file = e.target.files[0]
-    setFile({file: file})
+    setFile(file)
       console.log(e.target.files)
       console.log(e.target.files[0])
   }
+
+
+  // const handleUpload = async event => {
+    // event.preventDefault()
+    // let formData = new FormData()
+    // formData.append("file", file)
+  //   let response = await axios.post(
+  //     "https://api.thecatapi.com/v1/images/upload",
+  //     formData,
+  //     {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //         "x-api-key": "4527b491-f002-48a2-a7d1-31efcb972861"
+  //       }
+  //     }
+  //   )
+  //   console.log("response", response)
+  // }
+
+
 
 
   const handleUpload = async(e) => {
     e.preventDefault()
     let formData = new FormData()
     formData.append("file", file)
-    let response = await axios.post(
-      "https://api.thecatapi.com/v1/images/upload",
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          "x-api-key": "4527b491-f002-48a2-a7d1-31efcb972861"
+    // formData.append('WHAT THE API CALLS THE TYPE OF FILE', data)
+     // formData.append('name', "The Cat")     
+    try {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+      let response = await axios.post(
+        "https://api.thecatapi.com/v1/images/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "x-api-key": "4527b491-f002-48a2-a7d1-31efcb972861"
+          }
         }
-      }
-    )
+      )
+    console.log(response.data, 'response data')
+    const { fileName } = response.data
+    setUploadedFile({ fileName })
+    console.log(uploadedFile)
     console.log("response", response)
+  } catch(err) {
+    if(err.response.status === 500) {
+      console.log('Server issue')
+    } else {
+      console.log(err.response.data)
+    }
+  }
+    console.log(file, 'file')
   }
 
-
-
-
-  // const handleUpload = async(e) => {
-  //   e.preventDefault()
-  //   let data = file
-  //   let formData = new FormData()
-  //   // formData.append('WHAT THE API CALLS THE TYPE OF FILE', data)
-  //   formData.append('image', data)
-  //    // formData.append('name', "The Cat")     
-  //   try {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-  //   const res = await axios({
-  //     url: 'https://api.thecatapi.com/v1/images/upload',
-  //     method: "POST",
-  //     headers: {
-  //       'x-api-key': '4527b491-f002-48a2-a7d1-31efcb972861',
-  //     },
-  //     data: formData
-  //   })
-  //   console.log(res.data, 'response data')
-  //   const { fileName } = res.data
-  //   setUploadedFile({ fileName })
-  //   console.log(uploadedFile)
-  // } catch(err) {
-  //   if(err.response.status === 500) {
-  //     console.log('Server issue')
-  //   } else {
-  //     console.log(err.response.data)
-  //   }
-  // }
-  //   console.log(file, 'file')
-  // }
-
-  // console.log(uploadedFile)
+  console.log(uploadedFile)
   return (
     <>
       <form onSubmit={handleUpload}>

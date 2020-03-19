@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import UploadFile from './components/uploadInput/index'
+import UploadButton from './components/uploadInput/index'
 
 function App() {
   return (
     <>
     <div className="App">
-      <UploadFile/>
+      <UploadButton/>
     </div>
     </>
   );
