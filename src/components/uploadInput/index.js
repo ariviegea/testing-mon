@@ -6,7 +6,9 @@ import { Button } from "mon-dieu-elements"
 
 const UploadButton = ({
 }) => {
-  const [file, setFile] = useState(null)
+  const [file, setFile] = useState('')
+  const [filename, setFilename] = useState('Choose File')
+  const [uploadedFile, setUploadedFile] = useState({})
 
   // const UploadFileReducer = (state, event) => {
   //   const newState = 
@@ -15,7 +17,6 @@ const UploadButton = ({
   //   return newState
   // }
   // const [state, dispatch] = useReducer(UploadFileReducer, UploadFileMachine.start)
-
   const handleFile = (e) => {
     let file = e.target.files[0]
     setFile({file: file})
@@ -23,32 +24,65 @@ const UploadButton = ({
       console.log(e.target.files[0])
   }
 
-  const handleUpload = () => {
-    let data = file
+
+  const handleUpload = async(e) => {
+    e.preventDefault()
     let formData = new FormData()
-
-    formData.append('image', data)
-    formData.append('name', "The Cat")
-    axios({
-      url: 'https://api.thecatapi.com/v1/images/upload',
-      method: "POST",
-      headers: {
-        authorization:'x-api-key: 4527b491-f002-48a2-a7d1-31efcb972861',
-      },
-      data: formData
-    }).then((res)=> {
-
-    })
-    console.log(file, 'file')
-
+    formData.append("file", file)
+    let response = await axios.post(
+      "https://api.thecatapi.com/v1/images/upload",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "x-api-key": "4527b491-f002-48a2-a7d1-31efcb972861"
+        }
+      }
+    )
+    console.log("response", response)
   }
+
+
+
+
+  // const handleUpload = async(e) => {
+  //   e.preventDefault()
+  //   let data = file
+  //   let formData = new FormData()
+  //   // formData.append('WHAT THE API CALLS THE TYPE OF FILE', data)
+  //   formData.append('image', data)
+  //    // formData.append('name', "The Cat")     
+  //   try {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+  //   const res = await axios({
+  //     url: 'https://api.thecatapi.com/v1/images/upload',
+  //     method: "POST",
+  //     headers: {
+  //       'x-api-key': '4527b491-f002-48a2-a7d1-31efcb972861',
+  //     },
+  //     data: formData
+  //   })
+  //   console.log(res.data, 'response data')
+  //   const { fileName } = res.data
+  //   setUploadedFile({ fileName })
+  //   console.log(uploadedFile)
+  // } catch(err) {
+  //   if(err.response.status === 500) {
+  //     console.log('Server issue')
+  //   } else {
+  //     console.log(err.response.data)
+  //   }
+  // }
+  //   console.log(file, 'file')
+  // }
+
+  // console.log(uploadedFile)
   return (
     <>
-      <form>
-        <Label>Choose a file</Label>
-        <Input type="file" name="file" onChange={handleFile}/>
+      <form onSubmit={handleUpload}>
+        <Label className="labelfile" htmlFor='file'>{filename}</Label>
+        <Input className="inputfile" id='file' type="file" name="file" onChange={handleFile}/>
         <Button
-        onClick={handleUpload}
+        onClick={(e) => handleUpload}
         />
       </form>
     </>
